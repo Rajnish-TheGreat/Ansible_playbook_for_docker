@@ -10,11 +10,6 @@
       baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
       gpgcheck: no
  
-  - name: Install Java
-    yum:
-      name: "/root/jdk-8u171-linux-x64.rpm"
-      state: present
-      disable_gpg_check: true
 
   - name: "installing Docker-CE"
     package:
@@ -39,7 +34,7 @@
     lineinfile:
       path: /usr/lib/systemd/system/docker.service
       regexp: '^ExecStart'
-      line: "ExecStart=/usr/bin/dockerd -H fd:// -H tcp://{{ ansible_enp0s8['ipv4']['address'] }}:4243"
+      line: "ExecStart=/usr/bin/dockerd -H fd:// -H tcp://{{ ansible_eth0['ipv4']['address'] }}:4243"
     register: docker_api
 
   - debug:
