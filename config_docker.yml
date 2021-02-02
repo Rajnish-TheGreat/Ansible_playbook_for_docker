@@ -60,7 +60,7 @@
     add_host:
       name: "{{ container_name }}"
       ansible_connection: docker
-      ansible_docker_extra_args: "-H=tcp://{{ ansible_enp0s8['ipv4']['address'] }}:4243"
+      ansible_docker_extra_args: "-H=tcp://{{ ansible_eth0['ipv4']['address'] }}:4243"
       groups:
       - container
 
@@ -77,8 +77,8 @@
     
   - name: copying index file to root directory
     template:
-      src: "{{ path_to_index_file }}"
-      dest: "/var/www/html/ind.html"
+      src: "index.html"
+      dest: "/var/www/html/index.html"
     ignore_errors: yes
     
   - name: starting httpd service inside container
