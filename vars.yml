@@ -1,0 +1,4 @@
+container_name: "web"
+container_image: "rajnishthegreat/html:latest"
+port_to_expose: 8080
+path_to_index_file: "/root/index.html"
